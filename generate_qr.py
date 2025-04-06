@@ -6,7 +6,7 @@ import urllib.parse
 DB_FILE = "medicine.db"
 QR_FOLDER = "static/qr_codes"
 LOCAL_IP = "" #Enter Your IP
-PORT = 5000
+PORT = "" #Enter Port
 
 os.makedirs(QR_FOLDER, exist_ok=True)
 

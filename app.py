@@ -7,8 +7,10 @@ import urllib.parse
 from functools import wraps
 
 app = Flask(__name__)
-app.secret_key = 'k9ZjJkLZ7BzQipmW5HKdAfPqxT13V8EzrYl6tW2cB0E='
+app.secret_key = 'k9ZjJkLZ7BzQipmW5HKdAfPqxT13V8EzrYl6tW2cB0E=' #Change if needed
 
+IP = "" #Enter your IP
+Port = "" #Enter PORT
 DB_FILE = "medicine.db"
 CSV_FILE = "medicines.csv"
 QR_FOLDER = "static/qr_codes"
@@ -102,7 +104,7 @@ def admin():
             encoded_name = urllib.parse.quote(name)
             encoded_manufacturer = urllib.parse.quote(manufacturer)
             encoded_batch = urllib.parse.quote(batch_no)
-            qr_data = f"http://Enter Your IP:5000/verify/{encoded_name}/{encoded_manufacturer}/{encoded_batch}"
+            qr_data = f"http://{IP}:{Port}/verify/{encoded_name}/{encoded_manufacturer}/{encoded_batch}"
             img = qrcode.make(qr_data)
             filename = f"{name.replace(' ', '_')}_{manufacturer.replace(' ', '_')}_{batch_no.replace(' ', '_')}.png"
             img.save(os.path.join(QR_FOLDER, filename))
@@ -171,4 +173,4 @@ def home():
 
 if __name__ == '__main__':
     init_db()
-    app.run(host='Enter Your IP', port=5000, debug=True)
+    app.run(host=IP, port=Port, debug=True)
